@@ -8,6 +8,7 @@ FITUR
 
 - Interaktif via terminal
 - Tampilan bersih dan sederhana
+- Hanya masih bisa cracking ZIP saja
 
 ===============================
 
