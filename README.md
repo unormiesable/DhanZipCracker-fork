@@ -5,6 +5,7 @@ DHAN Tools adalah script Python minimalis untuk melakukan brute force terhadap f
 ===============================
 
 FITUR
+
 - Interaktif via terminal
 - Tampilan bersih dan sederhana
 
@@ -21,6 +22,7 @@ STRUKTUR FOLDER
 ===============================
 
 CARA MENJALANKAN
+
 Clone repository:
 git clone https://github.com/username/zip-brute-dhan.git
 
@@ -34,6 +36,7 @@ Path file wordlist : wordlist.txt (Atau bisa menggunakan worlists yang lain)
 ===============================
 
 CONTOH ISI WORLIST DISINI
+
 123456
 admin
 admin123
@@ -43,6 +46,7 @@ password
 ===============================
 
 SEDIKI TIPS MEMBUAT ZIP BERPASSWORD
+
 Di Linux/macOS:
 echo "Flag{rahasia}" > secret.txt
 zip -e target.zip secret.txt
@@ -51,5 +55,6 @@ zip -e target.zip secret.txt
 ===============================
 
 DISCLAIMER
+
 Tools ini hanya untuk pembelajaran, analisis forensik, dan simulasi keamanan.
 Jangan digunakan untuk tujuan ilegal. Segala penyalahgunaan di luar tanggung jawab pembuat.
