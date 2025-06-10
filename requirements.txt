@@ -4,6 +4,7 @@ glfw==2.9.0
 imgui==2.0.0
 inflate64==1.0.3
 multivolumefile==0.2.3
+numpy==2.3.0
 psutil==7.0.0
 py7zr==1.0.0
 pybcj==1.0.6
