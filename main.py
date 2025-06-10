@@ -3,12 +3,10 @@ import py7zr
 import os
 from colorama import Fore, Style, init
 
-from gui import GUI
-
-class Main:
+class DhanZipCracker:
     def __init__(self):
         init(autoreset=True)
-        self.gui = GUI()
+        self.run()
 
     def brute_force_zip(self, zip_path, wordlist_path):
         try:
@@ -51,9 +49,10 @@ class Main:
             print(f"{Fore.RED}[!] File 7z tidak ditemukan atau rusak.")
             return False
 
-    def run_gui(self):
-        self.gui.run()
+
+    def run(self):
+        print("AG")
+
 
 if __name__ == "__main__":
-    main_app = Main()
-    main_app.run_gui()
+    main_app = DhanZipCracker()
