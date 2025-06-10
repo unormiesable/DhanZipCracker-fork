@@ -42,8 +42,8 @@ def main():
     print(ascii_art)
     print(f"{Fore.MAGENTA}=== ZIP Password Brute Forcer by Dhan ==={Style.RESET_ALL}\n")
 
-    zip_path = input(f"{Fore.BLUE}[?] Masukkan path file ZIP target: ").strip()
-    wordlist_path = input(f"{Fore.BLUE}[?] Masukkan path file wordlist: ").strip()
+    zip_path = input(f"{Fore.CYAN}[?] Masukkan path file .ZIP/.7z target: ").strip()
+    wordlist_path = input(f"{Fore.CYAN}[?] Masukkan path file wordlist (Bisa Menggunakan Wordlist Milik Sendiri: ").strip()
 
     brute_force_zip(zip_path, wordlist_path)
 
