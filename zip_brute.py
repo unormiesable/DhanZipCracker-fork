@@ -22,6 +22,7 @@ def brute_force_zip(zip_path, wordlist_path):
     except zipfile.BadZipFile:
         print(f"{Fore.RED}[!] File ZIP rusak atau tidak valid.")
 
+
 def brute_force_7z(sevenz_path, wordlist_path):
     try:
         with open(wordlist_path, 'r', encoding='utf-8', errors='ignore') as wordlist:
@@ -38,6 +39,7 @@ def brute_force_7z(sevenz_path, wordlist_path):
         print(f"\n{Fore.RED}[×] Password 7z tidak ditemukan dalam wordlist.")
     except FileNotFoundError:
         print(f"{Fore.RED}[!] File 7z tidak ditemukan atau rusak.")
+
 
 def main():
     ascii_art = fr"""{Fore.CYAN}{Style.BRIGHT}
