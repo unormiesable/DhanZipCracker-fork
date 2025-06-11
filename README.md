@@ -12,40 +12,48 @@ DHAN Tools adalah script Python minimalis untuk melakukan brute force terhadap f
 
 ## CARA MENJALANKAN
 
+
+### Clone repository :
 <pre>
-Clone repository :
 <code>git clone https://github.com/unormiesable/DhanZipCracker-fork.git</code>
 <code>cd DhanZipCracker-fork</code>
+</pre>
 
 
-Buat Virtual Environment :
+### Buat Virtual Environment :
+<pre>
 <code>python -m venv virtual</code>
+</pre>
 
 
-Gunakan Virtual Environment :
+### Gunakan Virtual Environment :
+<pre>
 - Windows :
     - CMD           : <code>.\virtual\Scripts\activate.bat</code>
     - PowerShell    : <code>.\virtual\Scripts\Activate.ps1</code>
     - Git Bash      : <code>source virtual/Scripts/activate</code>
 
 - Linux : <code>source virtual/bin/activate</code>
-
-
-Install Modules :
-<code>pip install -r requirements.txt</code>
-
-
-Run Program :
-<code>python main.py</code>
 </pre>
 
 
+### Install Modules :
+<pre>
+<code>pip install -r requirements.txt</code>
+</pre>
+
+
+### Run Program :
+<pre>
+<code>python main.py</code>
+</pre>
+
+##
 Masukkan path file saat diminta:
 Path file ZIP target : target.zip (SESUAIKAN DENGAN TARGET ZIP YANG ADA PADA FOLDER)
 Path file wordlist : wordlist.txt (Atau bisa menggunakan worlists yang lain)
 
 
 ## DISCLAIMER
-
 Tools ini hanya untuk pembelajaran, analisis forensik, dan simulasi keamanan.
 Jangan digunakan untuk tujuan ilegal. Segala penyalahgunaan di luar tanggung jawab pembuat.
