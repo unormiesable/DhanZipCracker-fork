@@ -21,6 +21,8 @@ class GUI:
             scroll=ft.ScrollMode.HIDDEN,
             expand=True
         )
+        self.start_button_ref = None
+        self._cracking_in_progress = False
     
     
     def run(self, page: ft.Page):
@@ -144,6 +146,25 @@ class GUI:
             self.log_text_control.controls.clear()
             page.update()
 
+        def toggle_cracking_state(e):
+            if not self._cracking_in_progress:
+                self.app.start_cracking()
+            else:
+                self.app.stop_cracking()
+            page.update()
+
+        def update_start_button(is_cracking):
+            self._cracking_in_progress = is_cracking
+            if self.start_button_ref:
+                if is_cracking:
+                    self.start_button_ref.content.controls[0].icon = ft.Icons.STOP
+                    self.start_button_ref.content.controls[1].value = "Hentikan"
+                else:
+                    self.start_button_ref.content.controls[0].icon = ft.Icons.PLAY_ARROW
+                    self.start_button_ref.content.controls[1].value = "Mulai Crack"
+                page.update()
+        self.update_start_button = update_start_button
+
         # UI SETUP
         selected_zip_text = ft.ElevatedButton(
             content=ft.Row(
@@ -168,6 +189,23 @@ class GUI:
             width=self.button_width,
             disabled=True
         )
+        
+        self.start_button_ref = ft.FilledButton(
+            content=ft.Row(
+                [
+                    ft.Icon(ft.Icons.PLAY_ARROW),
+                    ft.Text("Mulai Crack"),
+                ],
+                alignment=ft.MainAxisAlignment.START,
+                spacing=10,
+            ),
+            on_click=toggle_cracking_state,
+            style=ft.ButtonStyle(
+                shape=ft.RoundedRectangleBorder(radius=5),
+            ),
+            width=self.button_width
+        )
+
 
         page.add(
             ft.WindowDragArea(
@@ -240,21 +278,7 @@ class GUI:
                             ),
                             
                             
-                            ft.FilledButton(
-                                content=ft.Row(
-                                    [
-                                        ft.Icon(ft.Icons.PLAY_ARROW),
-                                        ft.Text("Mulai Crack"),
-                                    ],
-                                    alignment=ft.MainAxisAlignment.START,
-                                    spacing=10,
-                                ),
-                                on_click=lambda _: self.app.start_cracking(),
-                                style=ft.ButtonStyle(
-                                    shape=ft.RoundedRectangleBorder(radius=5),
-                                ),
-                                width=self.button_width
-                            ),
+                            self.start_button_ref,
 
 
                             ft.OutlinedButton(

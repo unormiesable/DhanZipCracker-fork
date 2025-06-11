@@ -12,16 +12,22 @@ class DhanZipCracker:
         
         self.zip_file_path = None
         self.txt_file_path = None
+        self._cracking_in_progress = False
 
     def start_cracking(self):
+        self._cracking_in_progress = True
+        self.gui.update_start_button(True)
+
         self.zip_file_path = self.gui.zip_file_path
         self.txt_file_path = self.gui.txt_file_path
 
         if not self.zip_file_path:
             self.gui.log_message(f"{Fore.RED}[!] Pilih file ZIP/7z terlebih dahulu.")
+            self.stop_cracking()
             return
         if not self.txt_file_path:
             self.gui.log_message(f"{Fore.RED}[!] Pilih file wordlist terlebih dahulu.")
+            self.stop_cracking()
             return
 
         self.gui.log_message(f"{Fore.YELLOW}[*] Memulai crack...")
@@ -30,15 +36,21 @@ class DhanZipCracker:
 
         if file_extension == ".zip":
             success = self.brute_force_zip(self.zip_file_path, self.txt_file_path)
-            if not success:
+            if not success and self._cracking_in_progress:
                 self.gui.log_message(f"{Fore.RED}[×] Password ZIP tidak ditemukan dalam wordlist.")
         elif file_extension == ".7z":
             success = self.brute_force_7z(self.zip_file_path, self.txt_file_path)
-            if not success:
+            if not success and self._cracking_in_progress:
                 self.gui.log_message(f"{Fore.RED}[×] Password 7z tidak ditemukan dalam wordlist.")
         else:
             self.gui.log_message(f"{Fore.RED}[!] Ekstensi file tidak didukung: {file_extension}")
+        
+        self.stop_cracking()
 
+    def stop_cracking(self):
+        self._cracking_in_progress = False
+        self.gui.update_start_button(False)
+        self.gui.log_message(f"{Fore.YELLOW}[*] Proses cracking dihentikan.")
 
     def brute_force_zip(self, zip_path, wordlist_path):
         try:
@@ -46,6 +58,8 @@ class DhanZipCracker:
                 with open(wordlist_path, 'r', encoding='utf-8', errors='ignore') as wordlist:
                     self.gui.log_message(f"{Fore.YELLOW}[*] Memulai brute force ZIP...")
                     for line in wordlist:
+                        if not self._cracking_in_progress:
+                            return False
                         password = line.strip()
                         try:
                             zip_file.extractall(pwd=bytes(password, 'utf-8'))
@@ -66,6 +80,8 @@ class DhanZipCracker:
             with open(wordlist_path, 'r', encoding='utf-8', errors='ignore') as wordlist:
                 self.gui.log_message(f"{Fore.YELLOW}[*] Memulai brute force 7z...")
                 for line in wordlist:
+                    if not self._cracking_in_progress:
+                        return False
                     password = line.strip()
                     try:
                         with py7zr.SevenZipFile(sevenz_path, mode='r', password=password) as archive:
